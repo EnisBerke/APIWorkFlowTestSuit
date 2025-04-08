@@ -11,11 +11,12 @@ Feature: Ecosystem Management
 
   Scenario: TS3 - Successfully get the details for the company
     Then Get the details for the company saved as 'Company_ID'
-    Then the response body key 'ScanStatus' should have one of the following values:
-      | Value                         |
-      | Extended Rescan Running       |
-      | Extended Rescan Queued        |
-      | Extended Rescan Results Ready |
+    Then Retry the last request until 'ScanStatus' equals 'Extended Rescan Results Ready' with max retries '10' and delay '20' seconds
+    #Then the response body key 'ScanStatus' should have one of the following values: 
+    #  | Value                         |
+    #  | Extended Rescan Running       |
+    #  | Extended Rescan Queued        |
+    #  | Extended Rescan Results Ready |
 
   Scenario: TS4 - Successfully get the details for the ecosystem
     Then Get the details for the ecosystem saved as 'Ecosystem_ID'

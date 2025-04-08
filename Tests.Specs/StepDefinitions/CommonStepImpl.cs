@@ -7,6 +7,8 @@ using MyApiAutomationProject.Tests.Specs.Support.Context;
 using System.Collections.Generic;
 using System;
 using TechTalk.SpecFlow.Assist;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace MyApiAutomationProject.Tests.Specs.StepDefinitions;
 
@@ -278,5 +280,51 @@ public sealed class CommonSteps
         {
             throw new InvalidOperationException($"Validation failed for '{propertyName}' (context '{contextKey}').", ex);
         }
+    }
+
+    [Then(@"Retry the last request until '(.*)' equals '(.*)' with max retries '(.*)' and delay '(.*)' seconds")]
+    public async Task ThenIRetryTheLastRequestUntilKeyEqualsValue(string jsonKey, string expectedValue, int maxRetries, int delaySeconds)
+    {
+        if (!_scenarioContext.TryGetValue("LastApiClient", out RestClient client) ||
+            !_scenarioContext.TryGetValue("LastApiRequest", out RestRequest request))
+        {
+            throw new InvalidOperationException("Last API Client or Request details not found in ScenarioContext.");
+        }
+
+        for (int attempt = 0; attempt <= maxRetries; attempt++)
+        {
+            var response = await client.ExecuteAsync(request);
+            _scenarioContext["LastApiResponse"] = response;
+
+            if (response.IsSuccessful && !string.IsNullOrWhiteSpace(response.Content))
+            {
+                try
+                {
+                    using var jsonDocument = JsonDocument.Parse(response.Content);
+                    if (jsonDocument.RootElement.TryGetProperty(jsonKey, out JsonElement jsonElement))
+                    {
+                        string? actualValue = jsonElement.ValueKind == JsonValueKind.Null ? null : jsonElement.ToString();
+                        bool conditionMet = (expectedValue.Equals("null", StringComparison.OrdinalIgnoreCase) && actualValue == null) ||
+                                            (actualValue != null && actualValue.Equals(expectedValue, StringComparison.OrdinalIgnoreCase));
+
+                        if (conditionMet)
+                        {
+                            return;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new InvalidOperationException($"Error checking condition '{jsonKey}': {ex.Message}", ex);
+                }
+            }
+
+            if (attempt < maxRetries)
+            {
+                await Task.Delay(delaySeconds * 1000);
+            }
+        }
+
+        throw new TimeoutException($"Condition '{jsonKey}' == '{expectedValue}' was not met after {maxRetries} retries.");
     }
 }

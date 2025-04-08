@@ -5854,11 +5854,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/enis/Desktop/APIworkFlow/Tests.Specs/Tests.Specs.csproj",
+      "projectUniqueName": "/Users/enis/Desktop/APIWorkFlowTestSuit/Tests.Specs/Tests.Specs.csproj",
       "projectName": "Tests.Specs",
-      "projectPath": "/Users/enis/Desktop/APIworkFlow/Tests.Specs/Tests.Specs.csproj",
+      "projectPath": "/Users/enis/Desktop/APIWorkFlowTestSuit/Tests.Specs/Tests.Specs.csproj",
       "packagesPath": "/Users/enis/.nuget/packages/",
-      "outputPath": "/Users/enis/Desktop/APIworkFlow/Tests.Specs/obj/",
+      "outputPath": "/Users/enis/Desktop/APIWorkFlowTestSuit/Tests.Specs/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/enis/.nuget/NuGet/NuGet.Config"

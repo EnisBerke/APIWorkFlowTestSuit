@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "N3z9uhVLfm4=",
+  "dgSpecHash": "cvFi7ALRaLM=",
   "success": true,
-  "projectFilePath": "/Users/enis/Desktop/APIworkFlow/Tests.Specs/Tests.Specs.csproj",
+  "projectFilePath": "/Users/enis/Desktop/APIWorkFlowTestSuit/Tests.Specs/Tests.Specs.csproj",
   "expectedPackageFiles": [
     "/Users/enis/.nuget/packages/bodi/1.5.0/bodi.1.5.0.nupkg.sha512",
     "/Users/enis/.nuget/packages/fluentassertions/6.12.0/fluentassertions.6.12.0.nupkg.sha512",

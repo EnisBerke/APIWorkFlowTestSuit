@@ -28,9 +28,7 @@ public sealed class CompanySteps
         {
             throw new InvalidOperationException("API client not found in ScenarioContext.");
         }
-
-        // SharedDataStore'dan oku
-        if (!SharedDataStore.TryGetValue<string>(ecosystemIdContextKey, out string? ecosystemIdString) || 
+        if (!SharedDataStore.TryGetValue<string>(ecosystemIdContextKey, out string? ecosystemIdString) ||
             !int.TryParse(ecosystemIdString, out int ecosystemId))
         {
             throw new InvalidOperationException($"Valid integer EcosystemId not found in SharedDataStore key '{ecosystemIdContextKey}'. Actual stored value: '{ecosystemIdString ?? "NULL"}'");
@@ -50,14 +48,17 @@ public sealed class CompanySteps
         {
             throw new InvalidOperationException("API client not found in ScenarioContext.");
         }
-
-        // SharedDataStore'dan oku
         if (!SharedDataStore.TryGetValue<string>(companyIdContextKey, out string? companyId) || string.IsNullOrWhiteSpace(companyId))
         {
             throw new InvalidOperationException($"CompanyId not found in SharedDataStore key '{companyIdContextKey}'.");
         }
 
         var request = new RestRequest($"/companies/{companyId}", Method.Get);
+
+        // Save client and request for potential retries
+        _scenarioContext["LastApiClient"] = _apiClient;
+        _scenarioContext["LastApiRequest"] = request;
+
         var response = await _apiClient.ExecuteAsync(request);
 
         Console.WriteLine($"--- Company GET Response Body Start (ID: {companyId}) ---" + Environment.NewLine + (response.Content ?? "<< Response Content is NULL >>") + Environment.NewLine + $"--- Company GET Response Body End (ID: {companyId}) ---");
@@ -71,7 +72,6 @@ public sealed class CompanySteps
         if (_apiClient == null)
             throw new InvalidOperationException("API client not found.");
 
-        // SharedDataStore'dan oku
         if (!SharedDataStore.TryGetValue<string>(companyIdContextKey, out string? companyId) || string.IsNullOrWhiteSpace(companyId))
             throw new InvalidOperationException($"CompanyId not found in SharedDataStore key '{companyIdContextKey}'.");
 

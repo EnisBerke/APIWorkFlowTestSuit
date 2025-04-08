@@ -148,16 +148,9 @@ namespace Tests.Specs.Features
 #line 13
     testRunner.Then("Get the details for the company saved as \'Company_ID\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Value"});
-                table1.AddRow(new string[] {
-                            "Extended Rescan Running"});
-                table1.AddRow(new string[] {
-                            "Extended Rescan Queued"});
-                table1.AddRow(new string[] {
-                            "Extended Rescan Results Ready"});
 #line 14
-    testRunner.Then("the response body key \'ScanStatus\' should have one of the following values:", ((string)(null)), table1, "Then ");
+    testRunner.Then("Retry the last request until \'ScanStatus\' equals \'Extended Rescan Results Ready\' " +
+                        "with max retries \'10\' and delay \'20\' seconds", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -170,7 +163,7 @@ namespace Tests.Specs.Features
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TS4 - Successfully get the details for the ecosystem", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 20
+#line 21
   this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -180,10 +173,10 @@ namespace Tests.Specs.Features
             else
             {
                 this.ScenarioStart();
-#line 21
+#line 22
     testRunner.Then("Get the details for the ecosystem saved as \'Ecosystem_ID\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 22
+#line 23
     testRunner.Then("the response body key \'EcosystemName\' should have value \'API demo\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -197,7 +190,7 @@ namespace Tests.Specs.Features
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TS5 - Successfully get notifications for the company", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 24
+#line 25
   this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -207,14 +200,14 @@ namespace Tests.Specs.Features
             else
             {
                 this.ScenarioStart();
-#line 25
+#line 26
     testRunner.Then("Get notifications for the company saved as \'Company_ID\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 26
+#line 27
     testRunner.Then("the first element in the response array should have \'CompanyId\' equal to the valu" +
                         "e saved as \'Company_ID\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 27
+#line 28
     testRunner.Then("the first element in the response array should have \'Company\' equal to \'GitHub\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -230,7 +223,7 @@ namespace Tests.Specs.Features
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TS6 - Successfully get email security findings for the company and a specific fin" +
                     "ding", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 29
+#line 30
   this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -240,13 +233,13 @@ namespace Tests.Specs.Features
             else
             {
                 this.ScenarioStart();
-#line 30
+#line 31
     testRunner.Then("Get email security findings for the company saved as \'Company_ID\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 31
+#line 32
     testRunner.Then("save random \'FindingId\' from root array as \'Finding_ID\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 32
+#line 33
     testRunner.Then("Get the specific email security finding saved as \'Finding_ID\' for the company sav" +
                         "ed as \'Company_ID\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
@@ -261,7 +254,7 @@ namespace Tests.Specs.Features
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TS7 - Successfully update the status of the finding and verify logs", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 34
+#line 35
   this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -271,18 +264,18 @@ namespace Tests.Specs.Features
             else
             {
                 this.ScenarioStart();
-#line 35
+#line 36
     testRunner.When("Update the status to \'Suppressed\' for the finding saved as \'Finding_ID\' for compa" +
                         "ny saved as \'Company_ID\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 36
+#line 37
     testRunner.Then("Get logs for the company saved as \'Company_ID\' for date range \'LastWeek\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 37
+#line 38
     testRunner.Then("the first element in the response array should have \'LogType\' equal to \'Finding S" +
                         "tatus Changed\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 38
+#line 39
     testRunner.Then("the first element in the response array should have \'InsertUser\' equal to \'API\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -296,7 +289,7 @@ namespace Tests.Specs.Features
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TS8 - Successfully delete the company and verify deletion", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 40
+#line 41
   this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -306,13 +299,13 @@ namespace Tests.Specs.Features
             else
             {
                 this.ScenarioStart();
-#line 41
+#line 42
     testRunner.When("Delete the company saved as \'Company_ID\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 42
+#line 43
     testRunner.Then("Get the details for the company saved as \'Company_ID\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 43
+#line 44
     testRunner.Then("the response body key \'Message\' should have value \'Company not found.\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -326,7 +319,7 @@ namespace Tests.Specs.Features
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TS9 -  Successfully delete the ecosystem and verify deletion", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 45
+#line 46
   this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -336,13 +329,13 @@ namespace Tests.Specs.Features
             else
             {
                 this.ScenarioStart();
-#line 46
+#line 47
     testRunner.When("Delete the ecosystem saved as \'Ecosystem_ID\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 47
+#line 48
     testRunner.Then("Get the details for the ecosystem saved as \'Ecosystem_ID\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 48
+#line 49
     testRunner.Then("the response body key \'Message\' should have value \'Ecosystem not found.\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
